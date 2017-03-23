@@ -2,6 +2,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {MaterialModule} from '@angular/material';
+import {FileUploadModule} from 'ng2-file-upload';
+import {SimpleNotificationsModule, NotificationsService} from 'angular2-notifications';
 
 import {AppComponent} from './app.component';
 import {Ng2BootstrapModule} from 'ng2-bootstrap';
@@ -15,8 +18,7 @@ import {CourseModule} from './courses/course.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuardService} from './shared/auth-guard.service';
-import {MaterialModule} from '@angular/material';
-import {FileUploadModule} from 'ng2-file-upload';
+import {LpToastsService} from './shared/lp-toasts.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {FileUploadModule} from 'ng2-file-upload';
     MaterialModule,
     Ng2BootstrapModule,
     FileUploadModule,
+    SimpleNotificationsModule.forRoot(),
     CourseModule,
     UserModule,
     AppRoutingModule
@@ -40,7 +43,9 @@ import {FileUploadModule} from 'ng2-file-upload';
   providers: [
     CourseDataService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    NotificationsService,
+    LpToastsService
   ],
   bootstrap: [AppComponent]
 })

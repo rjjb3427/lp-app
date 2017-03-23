@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
 
@@ -9,6 +9,8 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   userLogin;
+  @Output()
+  flashErrorMessage = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/profile']);
           },
         error => {
-          console.log(error);
+          this.flashErrorMessage.emit();
           this.router.navigate(['/login']);
         }
       );

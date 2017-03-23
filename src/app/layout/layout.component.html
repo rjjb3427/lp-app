@@ -1,37 +1,49 @@
-<md-toolbar color="primary">
-  <button md-button (click)="sidenav.toggle()">
-    <md-icon>menu</md-icon>
-  </button>
-  <header>
-    <div class="lp-title">
-      <a routerLink="">LP Energy Manager</a>
-    </div>
-  </header>
+<div class="lp-container">
 
-  <div class="lp-user-login">
+  <md-toolbar color="primary">
+    <button md-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>
+    <header>
+      <div class="lp-title">
+        <a routerLink="">LP Energy Manager</a>
+      </div>
+    </header>
+
+    <div class="lp-user-login">
     <span *ngIf="isUserLoggedIn()" [mdMenuTriggerFor]="appMenu">
       Welcome, {{currentUser?.firstName}}!
       <img src="./../../assets/images/profiles/mohi.jpg" alt="user-thumbnail" class="user-thumbnail">
     </span>
-    <md-menu xPosition="before" [overlapTrigger]="false" #appMenu="mdMenu" class="before">
-      <button md-menu-item (click)="profile()"> <md-icon>face</md-icon> Profile </button>
-      <button md-menu-item (click)="logout()"> <md-icon>exit_to_app</md-icon>Logout </button>
-    </md-menu>
-  </div>
-</md-toolbar>
-<md-sidenav-container class="lp-sidenave-container">
-  <md-sidenav #sidenav class="lp-sidenav">
-    <nav>
-      <ul class="lp-nav">
-        <li><a routerLink="dashboard" (click)="sidenav.close()" routerLinkActive="activeLink">Dashboard</a></li>
-        <li><a routerLink="courses" (click)="sidenav.close()" routerLinkActive="activeLink">Courses</a></li>
-        <li><a routerLink="paths" (click)="sidenav.close()" routerLinkActive="activeLink">Paths</a></li>
-      </ul>
-    </nav>
-  </md-sidenav>
+      <md-menu xPosition="before" [overlapTrigger]="false" #appMenu="mdMenu" class="before">
+        <button md-menu-item (click)="profile()">
+          <md-icon>face</md-icon>
+          Profile
+        </button>
+        <button md-menu-item (click)="logout()">
+          <md-icon>exit_to_app</md-icon>
+          Logout
+        </button>
+      </md-menu>
+    </div>
+  </md-toolbar>
 
-  <div class="lp-sidenav-content">
+  <md-sidenav-container class="lp-sidenave-container">
+
+    <md-sidenav #sidenav class="lp-sidenav">
+      <nav>
+        <ul class="lp-nav">
+          <li><a routerLink="dashboard" (click)="sidenav.close()" routerLinkActive="activeLink">Dashboard</a></li>
+          <li><a routerLink="courses" (click)="sidenav.close()" routerLinkActive="activeLink">Courses</a></li>
+          <li><a routerLink="paths" (click)="sidenav.close()" routerLinkActive="activeLink">Paths</a></li>
+        </ul>
+      </nav>
+    </md-sidenav>
+
+    <div class="lp-sidenav-content">
       <router-outlet></router-outlet>
-  </div>
+    </div>
 
-</md-sidenav-container>
+  </md-sidenav-container>
+
+</div>

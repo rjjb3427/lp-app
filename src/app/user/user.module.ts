@@ -11,6 +11,7 @@ import {
   UserComponent,
   userRoutes
 } from './index';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {
     MaterialModule,
     RouterModule.forChild(userRoutes),
     FormsModule,
+    SimpleNotificationsModule,
     ReactiveFormsModule
   ],
   declarations: [
