@@ -1,0 +1,99 @@
+<md-card class="lp-basic">
+  <md-toolbar color="primary">or Sign up here</md-toolbar>
+  <md-card-content>
+    <form #register="ngForm" (ngSubmit)="signup(register.value, register.valid)" novalidate>
+
+      <md-input-container class="lp-half-width">
+        <input
+          mdInput
+          placeholder="First Name"
+          value=""
+          name="firstName"
+          [(ngModel)]="userRegister.firstName"
+          #firstName="ngModel"
+          minlength="3"
+          required
+        >
+        <small [hidden]="firstName.valid || (firstName.pristine && !register.submitted)">
+          Title is required (minimum 3 characters).
+        </small>
+      </md-input-container>
+
+      <md-input-container class="lp-half-width">
+        <input
+          mdInput
+          placeholder="Last Name"
+          value=""
+          name="lastName"
+          [(ngModel)]="userRegister.lastName"
+          #lastName="ngModel"
+          minlength="3"
+          required
+        >
+        <small [hidden]="lastName.valid || (lastName.pristine && !register.submitted)">
+          Title is required (minimum 3 characters).
+        </small>
+      </md-input-container>
+
+      <md-input-container class="lp-full-width">
+        <input
+          mdInput
+          placeholder="Username"
+          value=""
+          name="username"
+          [(ngModel)]="userRegister.username"
+          #username="ngModel"
+          minlength="4"
+          required
+        >
+        <small [hidden]="username.valid || (username.pristine && !register.submitted)">
+          Title is required (minimum 4 characters).
+        </small>
+      </md-input-container>
+
+      <md-input-container class="lp-full-width">
+        <input
+          mdInput
+          placeholder="Email"
+          value=""
+          name="email"
+          [(ngModel)]="userRegister.email"
+          #email="ngModel"
+          minlength="4"
+          required
+        >
+        <small [hidden]="email.valid || (email.pristine && !register.submitted)">
+          Title is required (minimum 4 characters).
+        </small>
+      </md-input-container>
+
+      <md-input-container class="lp-full-width">
+        <input
+          mdInput
+          placeholder="Password"
+          name="password"
+          [(ngModel)]="userRegister.password"
+          #password="ngModel"
+          minlength="4"
+          required
+        >
+        <small [hidden]="password.valid || (password.pristine && !register.submitted)">
+          Author is required (minimum 8 characters).
+        </small>
+      </md-input-container>
+
+      <button
+        type="submit"
+        value="register"
+        md-raised-button
+        color="primary"
+        [disabled]="!register.valid"
+      >
+        <md-icon class="md-24">assignment_ind</md-icon>
+        register
+      </button>
+
+    </form>
+
+  </md-card-content>
+</md-card>

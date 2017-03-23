@@ -1,0 +1,23 @@
+.course-container {
+  .courese-title-divider {
+    border-bottom: 2px solid #333;
+  }
+  .back-button {
+    margin-top: 25px;
+    float: right;
+  }
+  .course-detail-container{
+    h3,h4,h5{
+      margin: 15px 0;
+      color: #7d8d99;
+    }
+    margin-top: 1em;
+    .lp-bold{
+      font-weight: bold;
+      font-size: 12pt;
+      img{
+        width: 100%;
+      }
+    }
+  }
+}

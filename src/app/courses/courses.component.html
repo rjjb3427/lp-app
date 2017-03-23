@@ -1,0 +1,15 @@
+<div class="container course-container">
+  <div class="row courese-title-divider">
+    <div class="col-md-9">
+      <h1>All Items</h1>
+    </div>
+    <div class="col-md-3">
+      <button md-raised-button color="primary" class="add-course-button" (click)="toggleAddMode()">
+        <md-icon class="md-24">add</md-icon>
+        Add A New Course
+      </button>
+    </div>
+  </div>
+  <lp-add-course *ngIf="addMode" (cancelAddCourse)="toggleAddMode()"></lp-add-course>
+  <lp-course-list *ngIf="!addMode"></lp-course-list>
+</div>

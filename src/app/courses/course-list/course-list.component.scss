@@ -1,0 +1,11 @@
+.course-list-container {
+  margin-top: 10px;
+  .mat-card {
+    margin: 1em 0;
+    img {
+      background-color: gray;
+      width: 180px;
+      height: 190px;
+    }
+  }
+}

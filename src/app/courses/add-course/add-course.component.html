@@ -1,0 +1,106 @@
+<div class="course-add-container">
+  <md-card class="lp-basic">
+    <md-toolbar color="primary">Add a new course</md-toolbar>
+    <md-card-content>
+      <div class="row">
+        <form #addCourse="ngForm" (ngSubmit)="save(addCourse.value, addCourse.valid)" novalidate>
+          <div class="col-md-6">
+            <md-input-container class="lp-full-width">
+              <input
+                mdInput
+                placeholder="Title"
+                value="Course Title"
+                name="title"
+                [(ngModel)]="course.title"
+                #title="ngModel"
+                minlength="4"
+                required
+              >
+              <small [hidden]="title.valid || (title.pristine && !addCourse.submitted)">
+                Title is required (minimum 4 characters).
+              </small>
+            </md-input-container>
+
+            <md-input-container style="width: 100%">
+              <input
+                mdInput
+                placeholder="Author"
+                name="author"
+                [(ngModel)]="course.author"
+                #author="ngModel"
+                minlength="4"
+                required
+              >
+              <small [hidden]="author.valid || (author.pristine && !addCourse.submitted)">
+                Author is required (minimum 4 characters).
+              </small>
+            </md-input-container>
+
+            <md-input-container style="width: 100%">
+              <input
+                mdInput
+                placeholder="Platform"
+                name="platform"
+                [(ngModel)]="course.platform"
+                #platform="ngModel"
+              >
+            </md-input-container>
+
+            <md-input-container class="lp-full-width">
+              <textarea
+                mdInput
+                placeholder="Description"
+                name="description"
+                [(ngModel)]="course.description"
+                #description="ngModel"
+              >course description</textarea>
+            </md-input-container>
+          </div>
+
+          <div class="col-md-6">
+            <md-input-container class="lp-full-width">
+              <input
+                mdInput
+                placeholder="Link"
+                name="link"
+                [(ngModel)]="course.link"
+                #link="ngModel"
+              >
+            </md-input-container>
+
+            <md-input-container style="width: 100%">
+              <input
+                mdInput
+                placeholder="4/9/2016"
+                name="publishedDate"
+                [(ngModel)]="course.publishedDate"
+                #publishedDate="ngModel"
+              >
+            </md-input-container>
+
+            <md-input-container style="width: 100%">
+              <input
+                mdInput
+                placeholder="Categories"
+                name="categories"
+                [(ngModel)]="course.categories"
+                #categories="ngModel"
+              >
+            </md-input-container>
+
+              <input
+                type="file"
+                ng2FileSelect
+                [uploader]="uploader"
+              >
+
+            <div class="pull-right">
+              <button type="submit" value="Save" md-raised-button color="primary" [disabled]="!addCourse.valid">Save</button>
+              <button type="button" value="Cancel" md-raised-button (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

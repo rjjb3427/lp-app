@@ -1,0 +1,27 @@
+<div class="container course-container">
+  <div class="row courese-title-divider">
+    <div class="col-md-9">
+      <h1>{{course?.title}}</h1>
+    </div>
+    <div class="col-md-3">
+      <button md-raised-button class="back-button" (click)="backToList()">
+        <md-icon class="md-24">arrow_back</md-icon>
+        Back
+      </button>
+    </div>
+  </div>
+  <div class="course-detail-container">
+    <div class="row">
+      <div class="col-md-5">
+        <h5>Author: <span class="lp-bold">{{course?.author}}</span></h5>
+        <h5>Platform: <span class="lp-bold">{{course?.platform}}</span></h5>
+        <h5>Categories: <span class="lp-bold">{{course?.categories}}</span></h5>
+        <h5>Description:</h5>
+        <p>{{course?.description}}</p>
+      </div>
+      <div class="col-md-7">
+        <img src="./../../../assets/images/nodejs.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>

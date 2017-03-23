@@ -1,0 +1,16 @@
+.course-container {
+  .courese-title-divider {
+    border-bottom: 2px solid #333;
+  }
+  .add-course-button {
+    margin: 20px 0;
+    float: right;
+  }
+  .sort-courses {
+    margin: 20px 0;
+    select {
+      display: inline-block;
+      width: 60%;
+    }
+  }
+}

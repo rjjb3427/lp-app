@@ -1,0 +1,31 @@
+<div class="course-list-container">
+  <div class="row">
+    <div class="col-md-2 pull-right">
+      <div class="sort-courses">
+        <md-select placeholder="Sort by:">
+          <md-option *ngFor="let item of sortItems" [value]="item.value">{{ item.name | uppercase }}</md-option>
+        </md-select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" *ngFor="let course of data | paginate: { itemsPerPage: 5, currentPage: p }">
+      <md-card>
+        <md-card-title-group>
+          <md-card-title (click)="onSelect(course)">{{course?.title}}</md-card-title>
+          <md-card-subtitle>Author: {{course?.author}}</md-card-subtitle>
+          <md-card-subtitle>
+            Categories:
+            <span *ngFor="let cat of course.categories">
+                {{cat}}
+              </span>
+          </md-card-subtitle>
+          <md-card-subtitle>Platform: {{course?.platform}}</md-card-subtitle>
+          <md-card-subtitle>Date Published:</md-card-subtitle>
+          <img md-card-md-image>
+        </md-card-title-group>
+      </md-card>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
