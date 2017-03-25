@@ -35,7 +35,11 @@ const CourseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  thumbnailURL: {
+  _paths: [{
+    type: mongoose.Schema.Types.ObjectId,
+    default: null
+  }],
+  imgURL: {
     type: String,
     trim: true,
     default: null
@@ -74,7 +78,7 @@ CourseSchema.statics.save = function (req) {
     link: req.body.link,
     author: req.body.author,
     _userId: req.user._id,
-    thumbnailURL: req.body.thumbUrl
+    imgURL: req.body.imgURL
   });
 
   return course.save();
@@ -89,8 +93,7 @@ CourseSchema.statics.findCourseAndUpdate = function (req) {
     'categories',
     'platform',
     'link',
-    'author',
-    'thunmbUrl'
+    'author'
   ]);
 
   return Course.findOneAndUpdate({

@@ -1,43 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from "@angular/http";
-import {Observable} from "rxjs";
-import {ICourse} from "./course.model";
-import {AuthService} from "../../user/shared/auth.service";
+import {Http, Response, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {ICourse} from './course.model';
+import {AuthService} from '../../user/shared/auth.service';
 
 @Injectable()
 export class CourseDataService {
   private CoursesApi = 'http://localhost:3000/api/courses';
-
-  constructor(
-    private http: Http,
-    private auth: AuthService
-  ) {
-  }
-
-  getCourses(): Observable <ICourse> {
-    return this.http.get(this.CoursesApi, {headers: this.createHeader()})
-      .map(CourseDataService.extractData)
-      .catch(CourseDataService.handleError)
-  }
-
-  getCourse(id): Observable <ICourse> {
-    return this.http.get(`${this.CoursesApi}/${id}`, {headers: this.createHeader()})
-      .map(CourseDataService.extractData)
-      .catch(CourseDataService.handleError)
-  }
-
-  addNewCourse(course): Observable <ICourse> {
-    return this.http.post(this.CoursesApi, JSON.stringify(course), {headers: this.createHeader()})
-      .map(CourseDataService.extractData)
-      .catch(CourseDataService.handleError)
-  }
-
-  private createHeader() {
-    return new Headers({
-      'Content-Type': 'application/json',
-      "x-auth": this.auth.getToken()
-    });
-  }
 
   private static extractData(res: Response) {
     let body = res.json();
@@ -56,6 +25,35 @@ export class CourseDataService {
     }
     console.error(errMsg);
     return Observable.throw(errMsg);
+  }
+
+  constructor(private http: Http,
+              private auth: AuthService) {
+  }
+
+  getCourses(): Observable<ICourse> {
+    return this.http.get(this.CoursesApi, {headers: this.createHeader()})
+      .map(CourseDataService.extractData)
+      .catch(CourseDataService.handleError);
+  }
+
+  getCourse(id): Observable<ICourse> {
+    return this.http.get(`${this.CoursesApi}/${id}`, {headers: this.createHeader()})
+      .map(CourseDataService.extractData)
+      .catch(CourseDataService.handleError);
+  }
+
+  addNewCourse(course): Observable<ICourse> {
+    return this.http.post(this.CoursesApi, JSON.stringify(course), {headers: this.createHeader()})
+      .map(CourseDataService.extractData)
+      .catch(CourseDataService.handleError);
+  }
+
+  private createHeader() {
+    return new Headers({
+      'Content-Type': 'application/json',
+      'x-auth': this.auth.getToken()
+    });
   }
 
 }

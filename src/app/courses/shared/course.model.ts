@@ -5,7 +5,7 @@ export interface ICourse {
   __v: 0,
   completedAt: any,
   completed: boolean,
-  thumbnailURL: string,
+  imgURL: string,
   author: string,
   link: string,
   platform: string,

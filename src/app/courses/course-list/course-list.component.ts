@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ICourse} from "../shared/course.model";
-import {CourseDataService} from "../shared/course-data.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ICourse} from '../shared/course.model';
+import {CourseDataService} from '../shared/course-data.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'lp-course-list',
@@ -20,15 +20,13 @@ export class CourseListComponent implements OnInit {
     name: 'Date', value: 'date'
   }];
 
-  constructor(
-    private dataService: CourseDataService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private dataService: CourseDataService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    //TODO implement query params for searching the courses
+    // TODO implement query params for searching the courses
     this.queryParams = this.activatedRoute.snapshot.queryParams;
 
     this.dataService.getCourses().subscribe(
@@ -38,8 +36,7 @@ export class CourseListComponent implements OnInit {
   }
 
   onSelect(course) {
-
-    this.router.navigate(['/courses', course._id])
+    this.router.navigate(['/courses', course._id]);
   }
 
 }

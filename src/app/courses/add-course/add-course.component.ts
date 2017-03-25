@@ -1,7 +1,9 @@
 import {Component, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
-import {ICourse} from "../shared/course.model";
-import {CourseDataService} from "../shared/course-data.service";
-import {FileUploader} from "ng2-file-upload";
+import {ICourse} from '../shared/course.model';
+import {CourseDataService} from '../shared/course-data.service';
+import {FileUploader} from 'ng2-file-upload';
+import {AuthService} from '../../user/shared/auth.service';
+import {UploadService} from '../../shared/upload.service';
 
 @Component({
   selector: 'lp-add-course',
@@ -9,20 +11,19 @@ import {FileUploader} from "ng2-file-upload";
   styleUrls: ['./add-course.component.scss']
 })
 export class AddCourseComponent implements OnInit {
-  @ViewChild('addCourse') addCourse;
   public course: ICourse;
   postResult: any;
   errorMessage: string;
 
-  ApiURL = 'api';
-  public uploader:FileUploader = new FileUploader({url: this.ApiURL});
+  ApiURL = 'http://localhost:3000/api/upload';
+  public uploader: FileUploader = new FileUploader({url: this.ApiURL});
 
   @Output()
   cancelAddCourse = new EventEmitter();
 
-  constructor(
-    private dataService: CourseDataService
-  ) {
+  constructor(private auth: AuthService,
+              private upload: UploadService,
+              private dataService: CourseDataService) {
   }
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class AddCourseComponent implements OnInit {
       __v: null,
       completedAt: null,
       completed: false,
-      thumbnailURL: '',
+      imgURL: '',
       author: 'Mohi Khalii',
       link: '',
       platform: 'Lynda',
@@ -44,27 +45,46 @@ export class AddCourseComponent implements OnInit {
     };
   }
 
-  save(model: ICourse, isValid: boolean) {
+  save(model, isValid: boolean) {
     // check if model is valid
-    // if (isValid) {
-    //   this.dataService.addNewCourse(model).subscribe(
-    //     data => this.postResult = data,
-    //     error => this.errorMessage = <any>error,
-    //     () => {
-    //       if(this.postResult) {
-    //         this.cancelAddCourse.emit()
-    //       }
-    //     }
-    //   );
-    // }
-    this.course.thumbnailURL = this.uploader.queue[0].file.name
-    console.log(this.course)
-    console.log(model, isValid)
-    console.log(this.uploader.queue[0].file.name)
+    if (isValid) {
+      this.upload.uploadSingleFile(this.uploader, this.uploader.queue[0])
+        .then((res) => {
+        let results;
+          if (res.status === 'success') {
+            results = JSON.parse(res.response);
+            model.imgURL = results.filename;
+            console.log(model.imgURL);
+            this.addCourse(model);
+          }
+        })
+        .catch((e) => {
+        console.log(e)
+          if (e.status === 'error') {
+            // flash message that image not uploaded with error before adding the course
+            // ask to save the course anyway or to re-upload
+            // this.addCourse(model);
+          } else if (e.status === 'empty') {
+            // this.addCourse(model);
+          }
+        });
+    }
+  }
+
+  addCourse(model) {
+    this.dataService.addNewCourse(model).subscribe(
+      data => this.postResult = data,
+      error => this.errorMessage = <any>error,
+      () => {
+        if (this.postResult) {
+          this.cancelAddCourse.emit();
+        }
+      }
+    );
   }
 
   cancel() {
-    this.cancelAddCourse.emit()
+    this.cancelAddCourse.emit();
   }
 
 }

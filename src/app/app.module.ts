@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {MaterialModule} from '@angular/material';
 import {FileUploadModule} from 'ng2-file-upload';
@@ -19,6 +19,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuardService} from './shared/auth-guard.service';
 import {LpToastsService} from './shared/lp-toasts.service';
+import {UploadService} from "./shared/upload.service";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {LpToastsService} from './shared/lp-toasts.service';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     MaterialModule,
     Ng2BootstrapModule,
@@ -45,7 +47,8 @@ import {LpToastsService} from './shared/lp-toasts.service';
     AuthService,
     AuthGuardService,
     NotificationsService,
-    LpToastsService
+    LpToastsService,
+    UploadService
   ],
   bootstrap: [AppComponent]
 })

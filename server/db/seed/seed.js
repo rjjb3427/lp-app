@@ -39,7 +39,7 @@ const seedCourses = (items) => {
       platform: faker.Random.bs_noun(),
       author: faker.Name.findName(),
       _userId: userOneId,
-      thumbnailURL: faker.Image.imageUrl()
+      imgURL: faker.Image.imageUrl()
     }
   }
 };
