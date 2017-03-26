@@ -1,0 +1,26 @@
+<div class="path-list-container">
+  <div class="row">
+    <div class="col-md-2 pull-right">
+      <div class="sort-paths">
+        <md-select placeholder="Sort by:">
+          <md-option *ngFor="let item of sortItems" [value]="item.value">{{ item.name | uppercase }}</md-option>
+        </md-select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let path of data">
+      <md-card>
+        <md-card-title-group>
+          <md-card-title (click)="onSelect(path)">{{path?.title}}</md-card-title>
+          <md-card-subtitle>
+            Categories:
+            <span *ngFor="let cat of path.categories">
+                {{cat}}
+              </span>
+          </md-card-subtitle>
+        </md-card-title-group>
+      </md-card>
+    </div>
+  </div>
+</div>

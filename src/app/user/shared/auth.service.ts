@@ -14,10 +14,8 @@ export class AuthService {
     'Content-Type': 'application/json'
   });
 
-  constructor(
-    private http: Http,
-    private router: Router
-  ) {
+  constructor(private http: Http,
+              private router: Router) {
     this.token = localStorage.getItem('token');
     this.currentUser = localStorage.getItem('user');
   }
@@ -25,13 +23,13 @@ export class AuthService {
   login(user) {
     return this.http.post(`${this.UsersApi}/login`, JSON.stringify(user), {headers: this.headers})
       .map(this.extractData)
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
   register(user) {
     return this.http.post(`${this.UsersApi}/register`, JSON.stringify(user), {headers: this.headers})
       .map(this.extractData)
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
   isUserLoggedIn() {
@@ -44,7 +42,7 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    if(this.isUserLoggedIn()){
+    if (this.isUserLoggedIn()) {
       return JSON.parse(localStorage.getItem('user'));
     }
   }
@@ -55,7 +53,7 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('token');
   }
 
   removeToken() {
@@ -65,14 +63,14 @@ export class AuthService {
   }
 
   logout() {
-    let headers = new Headers({
+    const headers = new Headers({
       'Content-Type': 'application/json',
       'x-auth': this.getToken()
     });
 
     return this.http.delete(`${this.UsersApi}/logout`, {headers: headers})
       .map(this.extractData)
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
   private extractData(res: Response) {

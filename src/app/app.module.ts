@@ -10,7 +10,6 @@ import {AppComponent} from './app.component';
 import {Ng2BootstrapModule} from 'ng2-bootstrap';
 import {LayoutComponent} from './layout/layout.component';
 import {AuthService} from './user/shared/auth.service';
-import {PathComponent} from './path/path.component';
 import {CourseDataService} from './courses/shared/course-data.service';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {UserModule} from './user/user.module';
@@ -19,15 +18,19 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AuthGuardService} from './shared/auth-guard.service';
 import {LpToastsService} from './shared/lp-toasts.service';
-import {UploadService} from "./shared/upload.service";
+import {UploadService} from './shared/upload.service';
+import { PathsComponent } from './paths/paths.component';
+import { PathsListComponent } from './paths/paths-list/paths-list.component';
+import { PathDetailComponent } from './paths/path-detail/path-detail.component';
+import { AddPathComponent } from './paths/add-path/add-path.component';
+import {PathsModule} from "./paths/paths.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     DashboardComponent,
-    PageNotFoundComponent,
-    PathComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import {UploadService} from "./shared/upload.service";
     FileUploadModule,
     SimpleNotificationsModule.forRoot(),
     CourseModule,
+    PathsModule,
     UserModule,
     AppRoutingModule
   ],

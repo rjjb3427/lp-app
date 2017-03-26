@@ -35,10 +35,6 @@ const CourseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  _paths: [{
-    type: mongoose.Schema.Types.ObjectId,
-    default: null
-  }],
   imgURL: {
     type: String,
     trim: true,

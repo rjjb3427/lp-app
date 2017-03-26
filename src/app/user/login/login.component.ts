@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         data => {
           this.auth.setToken(data.header['x-auth']);
           this.auth.setCurrentUser(data.body);
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/dashboard']);
           },
         error => {
           this.flashErrorMessage.emit();

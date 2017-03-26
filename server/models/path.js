@@ -48,14 +48,14 @@ PathSchema.statics.findAllAndPaginate = function (req) {
 PathSchema.statics.save = function (req) {
   const Path = this;
 
-  let Path = new Path({
+  let path = new Path({
     title: req.body.title,
     description: req.body.description,
     categories: req.body.categories,
     _userId: req.user._id
   });
 
-  return Path.save();
+  return path.save();
 };
 
 PathSchema.statics.findPathAndUpdate = function (req) {
@@ -65,9 +65,7 @@ PathSchema.statics.findPathAndUpdate = function (req) {
   let body = _.pick(req.body, [
     'title',
     'categories',
-    'platform',
-    'link',
-    'author'
+    'description'
   ]);
 
   return Path.findOneAndUpdate({

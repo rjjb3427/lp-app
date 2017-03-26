@@ -25,7 +25,7 @@ export class LayoutComponent implements OnInit {
   }
 
   profile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/dashboard']);
   }
 
   logout() {

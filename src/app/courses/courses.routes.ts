@@ -1,10 +1,10 @@
-import {Routes} from "@angular/router";
+import {Routes} from '@angular/router';
 import {
   CourseDetailComponent,
   CoursesComponent,
   AuthGuardService
-} from "./index";
-import {CourseDetailResolverService} from "./course-detail/course-detail-resolver.service";
+} from './index';
+import {CourseDetailResolverService} from './course-detail/course-detail-resolver.service';
 
 export const coursesRoutes: Routes = [
   {

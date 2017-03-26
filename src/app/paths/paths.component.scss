@@ -1,0 +1,16 @@
+.path-container {
+  .path-title-divider {
+    border-bottom: 2px solid #333;
+  }
+  .add-path-button {
+    margin: 20px 0;
+    float: right;
+  }
+  .sort-paths {
+    margin: 20px 0;
+    select {
+      display: inline-block;
+      width: 60%;
+    }
+  }
+}

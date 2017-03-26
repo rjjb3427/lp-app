@@ -9,6 +9,6 @@ export class CoursesComponent {
   addMode = false;
 
   toggleAddMode = function () {
-    this.addMode = !this.addMode
-  }
+    this.addMode = !this.addMode;
+  };
 }

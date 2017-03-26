@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 //Importing Router modules(controllers)
 const coursesApi = require('./routes/courses');
+const pathsApi = require('./routes/paths');
 const usersApi = require('./routes/users');
 const uploadApi = require('./routes/uploads');
 
@@ -15,13 +16,14 @@ const app = express();
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '2mb' }));
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '/../dist')));
 
 //API Routes
 app.use('/api/courses', coursesApi);
+app.use('/api/paths', pathsApi);
 app.use('/api/users', usersApi);
 app.use('/api/upload', uploadApi);
 

@@ -1,0 +1,15 @@
+<div class="container path-container">
+  <div class="row path-title-divider">
+    <div class="col-md-9">
+      <h2>LP Paths</h2>
+    </div>
+    <div class="col-md-3">
+      <button md-raised-button color="primary" class="add-path-button" (click)="toggleAddMode()">
+        <md-icon class="md-24">add</md-icon>
+        Add A New Path
+      </button>
+    </div>
+  </div>
+  <lp-add-path *ngIf="addMode" (cancelAddPath)="toggleAddMode()"></lp-add-path>
+  <lp-paths-list *ngIf="!addMode"></lp-paths-list>
+</div>
