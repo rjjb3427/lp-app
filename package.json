@@ -8,8 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "node ./server/bin/www",
-    "postinstall": "ng build --aot -prod",
+    "start": "ng build --aot -prod && node ./server/bin/www",
     "deploy": "git push origin master && git push heroku master",
     "build": "ng build",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
