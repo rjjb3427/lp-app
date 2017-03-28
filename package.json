@@ -2,9 +2,15 @@
   "name": "lp-app",
   "version": "0.1.0",
   "license": "MIT",
+  "engines": {
+    "node": "7.7.1",
+    "npm": "4.1.2"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng build && node ./server/bin/www",
+    "postinstall": "ng build --aot -prod",
+    "deploy": "git push origin master && git push heroku master",
     "build": "ng build",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\"",
@@ -23,6 +29,8 @@
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
     "angular2-notifications": "^0.4.53",
+    "@angular/cli": "^1.0.0-rc.4",
+    "@angular/compiler-cli": "^2.4.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
