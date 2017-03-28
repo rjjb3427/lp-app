@@ -25,18 +25,16 @@ export class LayoutComponent implements OnInit {
   }
 
   profile() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/profile']);
   }
 
   logout() {
     this.auth.logout().subscribe(
       (data) => {
-        console.log(data);
         this.auth.removeToken();
       },
       (error) => {
         console.log(error);
-        this.auth.removeToken();
       }
     );
   }

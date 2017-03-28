@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Resolve, Router, RouterStateSnapshot, Params, ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
-import {ICourse} from "../shared/course.model";
-import {CourseDataService} from "../shared/course-data.service";
+import {Resolve, Router, RouterStateSnapshot, ActivatedRouteSnapshot} from '@angular/router';
+import {ICourse} from '../shared/course.model';
+import {CourseDataService} from '../shared/course-data.service';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class CourseDetailResolverService implements Resolve<any> {
       }
     }).catch((e) => {
         this.router.navigate(['/courses']);
-      })
+      });
   }
 
 }

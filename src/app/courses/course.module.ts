@@ -12,6 +12,7 @@ import {Ng2PaginationModule} from 'ng2-pagination';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CourseRoutingModule} from './courses-routing.module';
 import {FileUploadModule} from 'ng2-file-upload';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {FileUploadModule} from 'ng2-file-upload';
     ReactiveFormsModule,
     Ng2PaginationModule,
     FileUploadModule,
+    SimpleNotificationsModule,
     CourseRoutingModule
   ],
   declarations: [

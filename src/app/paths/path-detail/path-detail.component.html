@@ -1,3 +1,35 @@
-<p>
-  path-detail works!
-</p>
+<div class="container path-container">
+  <div class="row path-title-divider">
+    <div class="col-md-9">
+      <h2>Courses in {{path?.title}}</h2>
+    </div>
+    <div class="col-md-3">
+      <button md-raised-button class="back-button" (click)="backToPathList()">
+        <md-icon class="md-24">arrow_back</md-icon>
+        Back
+      </button>
+    </div>
+  </div>
+  <div class="course-list-container">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let course of path?._courses">
+        <md-card>
+          <md-card-title-group>
+            <md-card-title (click)="onSelect(course?.id)">{{course?.title}}</md-card-title>
+            <md-card-subtitle>
+              Categories:
+              <span *ngFor="let cat of path?.categories">
+                {{cat}}
+              </span>
+            </md-card-subtitle>
+          </md-card-title-group>
+          <md-card-actions align="end">
+            <button md-button color="warn" class="remove-button" (click)="removeCourse(course)"><md-icon>delete</md-icon>Remove from Path</button>
+          </md-card-actions>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+

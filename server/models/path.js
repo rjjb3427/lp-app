@@ -22,8 +22,15 @@ const PathSchema = new mongoose.Schema({
     required: true
   },
   _courses: [{
-    type: mongoose.Schema.Types.ObjectId,
-    default: null
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      unique: true,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    }
   }],
   completed: {
     type: Boolean,
@@ -76,6 +83,60 @@ PathSchema.statics.findPathAndUpdate = function (req) {
   }, {
     new: true
   })
+};
+
+PathSchema.statics.findPathAndUpdateCourses = function (req) {
+  const Path = this;
+  const pathId = req.body.pathId;
+  const id = req.body.courseId;
+  const title = req.body.courseTitle;
+
+  return Path.findOne({
+    _userId: req.user._id,
+    _id: pathId
+  })
+    .then((path) => {
+      if (_.filter(path._courses, x => x.id.equals(id)).length === 0) {
+        path._courses.push({
+          id, title
+        });
+
+        return path.save().then(() => {
+          return path;
+        })
+      }
+      return {error: 'Course already exists'};
+    })
+    .catch((e) => {
+      return e;
+    });
+};
+
+PathSchema.statics.findPathAndDeleteCourses = function (req) {
+  const Path = this;
+  const pathId = req.body.pathId;
+  const id = req.body.courseId;
+  const title = req.body.courseTitle;
+
+  return Path.findOne({
+    _userId: req.user._id,
+    _id: pathId
+  })
+    .then((path) => {
+      if (_.filter(path._courses, x => x.id.equals(id)).length === 0) {
+        path._courses.splice({
+          id, title
+        });
+
+        return path.save().then(() => {
+          return path;
+        })
+      }
+      return {error: 'Course already removed'};
+    })
+    .catch((e) => {
+      return e;
+    });
 };
 
 PathSchema.statics.findPathAndDelete = function (req) {

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {AuthService} from '../../user/shared/auth.service';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import {IPath} from './path.model';
 
 @Injectable()
@@ -9,7 +10,7 @@ export class PathDataService {
   private PathsApi = 'http://localhost:3000/api/paths';
 
   private static extractData(res: Response) {
-    let body = res.json();
+    const body = res.json();
     return body || {};
   }
 
@@ -43,8 +44,31 @@ export class PathDataService {
       .catch(PathDataService.handleError);
   }
 
-  addNewPath(Path): Observable<IPath> {
-    return this.http.post(this.PathsApi, JSON.stringify(Path), {headers: this.createHeader()})
+  addNewPath(path): Observable<IPath> {
+    return this.http.post(this.PathsApi, JSON.stringify(path), {headers: this.createHeader()})
+      .map(PathDataService.extractData)
+      .catch(PathDataService.handleError);
+  }
+
+  addCourseToPath(course, pathId): Observable<any> {
+    // pick the course_id and pick the courses in path object with lodash and update the courses section only
+    const body = {
+      courseId: course._id,
+      courseTitle : course.title,
+      pathId: pathId
+    };
+    return this.http.post(`${this.PathsApi}/${pathId}/courses`, JSON.stringify(body), {headers: this.createHeader()})
+      .map(PathDataService.extractData)
+      .catch(PathDataService.handleError);
+  }
+
+  removeCourseFromPath(course, pathId): Observable<any> {
+    const body = {
+      courseId: course._id,
+      courseTitle : course.title,
+      pathId: pathId
+    };
+    return this.http.patch(`${this.PathsApi}/${pathId}/courses`, JSON.stringify(body), {headers: this.createHeader()})
       .map(PathDataService.extractData)
       .catch(PathDataService.handleError);
   }

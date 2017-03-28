@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2PaginationModule} from 'ng2-pagination';
 import {PathsComponent, PathDetailComponent, AddPathComponent, PathsListComponent} from './index';
 import {PathDataService} from "./shared/path-data.service";
+import {SimpleNotificationsModule} from "angular2-notifications";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import {PathDataService} from "./shared/path-data.service";
     FormsModule,
     ReactiveFormsModule,
     Ng2PaginationModule,
+    SimpleNotificationsModule,
     PathsRoutingModule
   ],
   declarations: [

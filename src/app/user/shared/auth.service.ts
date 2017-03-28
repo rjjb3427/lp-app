@@ -59,6 +59,7 @@ export class AuthService {
   removeToken() {
     this.token = undefined;
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
 
@@ -69,8 +70,9 @@ export class AuthService {
     });
 
     return this.http.delete(`${this.UsersApi}/logout`, {headers: headers})
-      .map(this.extractData)
-      .catch(this.handleError);
+      .catch((e) => {
+        return Observable.throw('something went wrong, could not logout', e);
+      });
   }
 
   private extractData(res: Response) {

@@ -6,6 +6,7 @@ const {ObjectID} = require('mongodb');
 
 const {mongoose} = require('./../db/mongoose');
 const {Path} = require('./../models/path');
+const {Course} = require('../models/course');
 const {authenticate} = require('./../middlewares/authenticate');
 
 router.route('/')
@@ -74,6 +75,49 @@ router.route('/:id')
       })
       .catch((e) => {
         res.status(400).send(e)
+      })
+  });
+
+router.route('/:id/courses')
+  .all(authenticate, (req, res, next) => {
+    next();
+  })
+  .post((req, res) => {
+
+    Path.findPathAndUpdateCourses(req)
+      .then((path) => {
+        if (!path) {
+          return res.status(404).send()
+        }
+        Course.findCourseAndUpdatePaths(req)
+          .then((course) => {
+            if (!course) {
+              return res.status(404).send()
+            }
+            res.send(course)
+          })
+      })
+      .catch((e) => {
+        return res.status(400).send(e)
+      })
+  })
+  .patch((req, res) => {
+
+    Path.findPathAndDeleteCourses(req)
+      .then((path) => {
+        if (!path) {
+          return res.status(404).send()
+        }
+        Course.findCourseAndDeletePaths(req)
+          .then((course) => {
+            if (!course) {
+              return res.status(404).send()
+            }
+            res.send(course)
+          })
+      })
+      .catch((e) => {
+        return res.status(400).send(e)
       })
   });
 

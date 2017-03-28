@@ -1,3 +1,56 @@
-<p>
-  add-path works!
-</p>
+<div class="path-add-container">
+  <md-card class="lp-basic">
+    <md-toolbar color="primary">Add a new path</md-toolbar>
+    <md-card-content>
+      <div class="row">
+        <form #addPath="ngForm" (ngSubmit)="save(addPath.value, addPath.valid)" novalidate>
+          <div class="col-md-6">
+            <md-input-container class="lp-full-width">
+              <input
+                mdInput
+                placeholder="Title"
+                value="Path Title"
+                name="title"
+                [(ngModel)]="path.title"
+                #title="ngModel"
+                minlength="4"
+                required
+              >
+              <small [hidden]="title.valid || (title.pristine && !addPath.submitted)">
+                Title is required (minimum 4 characters).
+              </small>
+            </md-input-container>
+
+            <md-input-container class="lp-full-width">
+              <textarea
+                mdInput
+                placeholder="Description"
+                name="description"
+                [(ngModel)]="path.description"
+                #description="ngModel"
+              >path description</textarea>
+            </md-input-container>
+          </div>
+
+          <div class="col-md-6">
+
+            <md-input-container style="width: 100%">
+              <input
+                mdInput
+                placeholder="Categories"
+                name="categories"
+                [(ngModel)]="path.categories"
+                #categories="ngModel"
+              >
+            </md-input-container>
+
+            <div class="pull-right">
+              <button type="submit" value="Save" md-raised-button color="primary" [disabled]="!addPath.valid">Save</button>
+              <button type="button" value="Cancel" md-raised-button (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>

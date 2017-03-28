@@ -1,0 +1,25 @@
+.path-container {
+  .path-title-divider {
+    border-bottom: 2px solid #333;
+  }
+  .back-button {
+    margin: 20px 0;
+    float: right;
+  }
+  .sort-paths {
+    margin: 20px 0;
+    select {
+      display: inline-block;
+      width: 60%;
+    }
+  }
+  .course-list-container {
+    margin-top: 2em;
+    .remove-button {
+      font-size: 12px;
+    }
+    .material-icons {
+      font-size: 18px;
+    }
+  }
+}

@@ -2,6 +2,7 @@ export interface ICourse {
   title: string,
   _id: string,
   _userId: string,
+  _paths: string[],
   __v: 0,
   completedAt: any,
   completed: boolean,

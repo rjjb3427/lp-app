@@ -32,6 +32,7 @@ export class AddCourseComponent implements OnInit {
       title: 'Computer basics',
       _id: '',
       _userId: '',
+      _paths: [],
       __v: null,
       completedAt: null,
       completed: false,

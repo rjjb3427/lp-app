@@ -18,10 +18,18 @@
         <h5>Categories: <span class="lp-bold">{{course?.categories}}</span></h5>
         <h5>Description:</h5>
         <p>{{course?.description}}</p>
+        <hr>
+        <md-select placeholder="Add to Path:">
+          <md-option *ngFor="let path of paths" [value]="path._id" (click)="addToPath(path._id)">
+            {{ path?.title | uppercase }}
+          </md-option>
+        </md-select>
       </div>
       <div class="col-md-7">
         <img src="src/assets/images/{{course?.imgURL}}" alt="">
       </div>
     </div>
   </div>
+
+  <simple-notifications [options]="toastOptions"></simple-notifications>
 </div>

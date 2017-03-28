@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "nodemon ./server/bin/www",
+    "start": "ng build && node ./server/bin/www",
     "build": "ng build",
     "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\"",
